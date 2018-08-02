@@ -16,9 +16,9 @@ public class CountriesTextFile {
 
 	// create file if it doesn't exist
 	public static void createFile() {
-		//String dir = "resources";
+		String dir = "resources";
 		String fileName = "countries.txt";
-		Path filePath = Paths.get(fileName);
+		Path filePath = Paths.get(dir, fileName);
 
 		if (Files.notExists(filePath)) {
 			try {
@@ -32,10 +32,10 @@ public class CountriesTextFile {
 
 	// store list of countries
 	public static void writeToFile(String countryName) { // method can also take in String dir, String fileName
-		//String dir = "resources";
+		String dir = "resources";
 		String fileName = "countries.txt";
 
-		Path writeFile = Paths.get(fileName);
+		Path writeFile = Paths.get(dir, fileName);
 
 		File file = writeFile.toFile();
 
@@ -53,18 +53,17 @@ public class CountriesTextFile {
 	public static ArrayList<String> readFromFile() {
 		ArrayList<String> countryList = new ArrayList<>();
 
-		//String dir = "resources";
+		String dir = "resources";
 		String fileName = "Countries.txt";
-		Path filePath = Paths.get(fileName);
+		Path filePath = Paths.get(dir, fileName);
 		File file = filePath.toFile();
-		//Scanner scan = new Scanner(file);
+		
 
 		try {
 			FileReader fr = new FileReader(file);
 			BufferedReader reader = new BufferedReader(fr);
 			String line = reader.readLine();
 
-			//while (scan.hasNextLine()) {  // TODO: see if Scanner avoids null line issue
 				while (line != null) {
 				line = reader.readLine();
 				countryList.add(line);
@@ -73,7 +72,8 @@ public class CountriesTextFile {
 		} catch (IOException e) {
 			System.out.println("Something went wrong!");
 		} 
-		//scan.close();
+		
+		
 		return countryList;
 	}
 }
